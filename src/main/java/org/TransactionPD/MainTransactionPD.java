@@ -58,7 +58,7 @@ public class MainTransactionPD {
         //разделение поступлений и трат
         dataFile.sortFile();
         //Идентификация категорий и описания отдельно
-        //1
+
 
         fileNameMonth = "OutputMonth";
         fileNameQuarter = "OutputQuarter";
