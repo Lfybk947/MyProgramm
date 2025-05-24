@@ -1,5 +1,7 @@
 package org.TransactionPD.Interface;
 
+import org.TransactionPD.Data.Parameterr;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -8,25 +10,30 @@ import java.io.IOException;
 
 public class CreateInterface extends JFrame {
 
-    private final String[][] mPODescrArr;
-    private final String[][] mMODescrArr;
-    private final String[][] mPOCateArr;
-    private final String[][] mMOCateArr;
+//    private final String[][] mPODescrArr;
+//    private final String[][] mMODescrArr;
+//    private final String[][] mPOCateArr;
+//    private final String[][] mMOCateArr;
+//
+//    private final String[][] qPODescrArr;
+//    private final String[][] qMODescrArr;
+//    private final String[][] qPOCateArr;
+//    private final String[][] qMOCateArr;
+//
+//    private final String[][] yPODescrArr;
+//    private final String[][] yMODescrArr;
+//    private final String[][] yPOCateArr;
+//    private final String[][] yMOCateArr;
 
-    private final String[][] qPODescrArr;
-    private final String[][] qMODescrArr;
-    private final String[][] qPOCateArr;
-    private final String[][] qMOCateArr;
+    private Parameterr parameterr;
 
-    private final String[][] yPODescrArr;
-    private final String[][] yMODescrArr;
-    private final String[][] yPOCateArr;
-    private final String[][] yMOCateArr;
+    public CreateInterface(Parameterr parameterr) {
 
+//    }
 
-    public CreateInterface(String[][] mPODescrArr, String[][] mMODescrArr, String[][] mPOCateArr, String[][] mMOCateArr,
-                           String[][] qPODescrArr, String[][] qMODescrArr, String[][] qPOCateArr, String[][] qMOCateArr,
-                           String[][] yPODescrArr, String[][] yMODescrArr, String[][] yPOCateArr, String[][] yMOCateArr) {
+//    public CreateInterface(String[][] mPODescrArr, String[][] mMODescrArr, String[][] mPOCateArr, String[][] mMOCateArr,
+//                           String[][] qPODescrArr, String[][] qMODescrArr, String[][] qPOCateArr, String[][] qMOCateArr,
+//                           String[][] yPODescrArr, String[][] yMODescrArr, String[][] yPOCateArr, String[][] yMOCateArr) {
 
         super("Transaction Program Data");//название программы
         this.setBounds(100, 100, 100, 200);//размер поля
@@ -36,21 +43,21 @@ public class CreateInterface extends JFrame {
         } catch (IOException e) {
             System.out.println("Отсутствует файл иконки приложения");
         }
-
-        this.mPODescrArr = mPODescrArr;
-        this.mMODescrArr = mMODescrArr;
-        this.mPOCateArr = mPOCateArr;
-        this.mMOCateArr = mMOCateArr;
-
-        this.qPODescrArr = qPODescrArr;
-        this.qMODescrArr = qMODescrArr;
-        this.qPOCateArr = qPOCateArr;
-        this.qMOCateArr = qMOCateArr;
-
-        this.yPODescrArr = yPODescrArr;
-        this.yMODescrArr = yMODescrArr;
-        this.yPOCateArr = yPOCateArr;
-        this.yMOCateArr = yMOCateArr;
+        this.parameterr = parameterr;
+//        this.mPODescrArr = mPODescrArr;
+//        this.mMODescrArr = mMODescrArr;
+//        this.mPOCateArr = mPOCateArr;
+//        this.mMOCateArr = mMOCateArr;
+//
+//        this.qPODescrArr = qPODescrArr;
+//        this.qMODescrArr = qMODescrArr;
+//        this.qPOCateArr = qPOCateArr;
+//        this.qMOCateArr = qMOCateArr;
+//
+//        this.yPODescrArr = yPODescrArr;
+//        this.yMODescrArr = yMODescrArr;
+//        this.yPOCateArr = yPOCateArr;
+//        this.yMOCateArr = yMOCateArr;
 
         Font font = new Font("Verdana", Font.PLAIN, 12);
         final JTabbedPane tabbedPane = new JTabbedPane();
@@ -61,18 +68,18 @@ public class CreateInterface extends JFrame {
 
         String[] columnNames = {"Time Data", "Categories", "Description", "Operation"};
 
-        JComponent table11 = new JTable(mPODescrArr, columnNames);//1-месяцы
-        JComponent table12 = new JTable(mPOCateArr, columnNames);
-        JComponent table13 = new JTable(mMODescrArr, columnNames);
-        JComponent table14 = new JTable(mMOCateArr, columnNames);
-        JComponent table21 = new JTable(qPODescrArr, columnNames);//2-кварталы
-        JComponent table22 = new JTable(qPOCateArr, columnNames);
-        JComponent table23 = new JTable(qMODescrArr, columnNames);
-        JComponent table24 = new JTable(qMOCateArr, columnNames);
-        JComponent table31 = new JTable(yPODescrArr, columnNames);//3-годы
-        JComponent table32 = new JTable(yPOCateArr, columnNames);
-        JComponent table33 = new JTable(yMODescrArr, columnNames);
-        JComponent table34 = new JTable(yMOCateArr, columnNames);
+        JComponent table11 = new JTable(parameterr.getmPODescrArr(), columnNames);//1-месяцы
+        JComponent table12 = new JTable(parameterr.getmPOCateArr(), columnNames);
+        JComponent table13 = new JTable(parameterr.getmMODescrArr(), columnNames);
+        JComponent table14 = new JTable(parameterr.getmMOCateArr(), columnNames);
+        JComponent table21 = new JTable(parameterr.getqPODescrArr(), columnNames);//2-кварталы
+        JComponent table22 = new JTable(parameterr.getqPOCateArr(), columnNames);
+        JComponent table23 = new JTable(parameterr.getqMODescrArr(), columnNames);
+        JComponent table24 = new JTable(parameterr.getqMOCateArr(), columnNames);
+        JComponent table31 = new JTable(parameterr.getyPODescrArr(), columnNames);//3-годы
+        JComponent table32 = new JTable(parameterr.getyPOCateArr(), columnNames);
+        JComponent table33 = new JTable(parameterr.getyMODescrArr(), columnNames);
+        JComponent table34 = new JTable(parameterr.getyMOCateArr(), columnNames);
 
         JScrollPane scrolPane11 = new JScrollPane((table11));
         JScrollPane scrolPane12 = new JScrollPane((table12));

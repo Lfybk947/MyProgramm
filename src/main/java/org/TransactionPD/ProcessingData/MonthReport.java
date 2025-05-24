@@ -42,18 +42,10 @@ public class MonthReport {
 
         this.identificationTime = identificationTime;
     }
-    public String[][] getPODescrArr() {
-        return PODescrArr;
-    }
-    public String[][] getMODescrArr() {
-        return MODescrArr;
-    }
-    public String[][] getPOCateArr() {
-        return POCateArr;
-    }
-    public String[][] getMOCateArr() {
-        return MOCateArr;
-    }
+    public String[][] getPODescrArr() {return PODescrArr;}
+    public String[][] getMODescrArr() {return MODescrArr;}
+    public String[][] getPOCateArr() {return POCateArr;}
+    public String[][] getMOCateArr() {return MOCateArr;}
 
 
 
@@ -96,17 +88,7 @@ public class MonthReport {
                     time = new TimeYear(dataFile.getPlusInputData(), dataFile.getMinusInputData(), timeColumn, amountMonth);
                 }
                 time.timeInterfaces(amountMonth);
-//                time.printStringData();
 
-//                TimeQuarter time = new TimeQuarter(dataFile.getPlusInputData(), dataFile.getMinusInputData(), timeColumn, amountMonth);
-//                time.timeInterfaces(amountMonth);
-//
-//                TimeYear time = new TimeYear(dataFile.getPlusInputData(), dataFile.getMinusInputData(), timeColumn, amountMonth);
-//                time.timeInterfaces(amountMonth);
-
-
-
-//            timeMonth.numberTimeMonth();//начальная и конечная строка месяца
 
 
                 RangeData rangeMonth = new RangeData(dataFile.getPlusDataFileCateDescr(), dataFile.getMinusDataFileCateDescr(),

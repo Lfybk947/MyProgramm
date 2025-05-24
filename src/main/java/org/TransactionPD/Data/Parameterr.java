@@ -1,9 +1,9 @@
 package org.TransactionPD.Data;
 
-import java.util.Arrays;
+
 
 public class Parameterr implements java.io.Serializable {//сериализуемый класс
-    public final String[][] mPODescrArr;
+    private final String[][] mPODescrArr;
     private final String[][] mMODescrArr;
     private final String[][] mPOCateArr;
     private final String[][] mMOCateArr;
@@ -36,4 +36,17 @@ public class Parameterr implements java.io.Serializable {//сериализуе�
         this.yPOCateArr = yPOCateArr;
         this.yMOCateArr = yMOCateArr;
     }
+
+    public String[][] getmPODescrArr() {return mPODescrArr;}
+    public String[][] getmMODescrArr() {return mMODescrArr;}
+    public String[][] getmPOCateArr() {return mPOCateArr;}
+    public String[][] getmMOCateArr() {return mMOCateArr;}
+    public String[][] getqPODescrArr() {return qPODescrArr;}
+    public String[][] getqMODescrArr() {return qMODescrArr;}
+    public String[][] getqPOCateArr() {return qPOCateArr;}
+    public String[][] getqMOCateArr() {return qMOCateArr;}
+    public String[][] getyPODescrArr() {return yPODescrArr;}
+    public String[][] getyMODescrArr() {return yMODescrArr;}
+    public String[][] getyPOCateArr() {return yPOCateArr;}
+    public String[][] getyMOCateArr() {return yMOCateArr;}
 }
