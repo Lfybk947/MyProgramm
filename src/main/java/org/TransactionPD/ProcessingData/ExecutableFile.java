@@ -5,6 +5,7 @@ import org.TransactionPD.Data.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ExecutableFile {
     static int categories;
@@ -17,24 +18,23 @@ public class ExecutableFile {
     static String fileNameYear;
 
 
-    static List<String> mPODescr = new ArrayList<>();
-    static List<String> mMODescr = new ArrayList<>();
-    static List<String> mPOCate = new ArrayList<>();
-    static List<String> mMOCate = new ArrayList<>();
+//     AtomicReference<ArrayList<String>> mPODescr = new AtomicReference<>();
+     List<String> mPODescr = new ArrayList<>();
+     List<String> mMODescr = new ArrayList<>();
+     List<String> mPOCate = new ArrayList<>();
+     List<String> mMOCate = new ArrayList<>();
 
-    static List<String> qPODescr = new ArrayList<>();
-    static List<String> qMODescr = new ArrayList<>();
-    static List<String> qPOCate = new ArrayList<>();
-    static List<String> qMOCate = new ArrayList<>();
+     List<String> qPODescr = new ArrayList<>();
+     List<String> qMODescr = new ArrayList<>();
+     List<String> qPOCate = new ArrayList<>();
+     List<String> qMOCate = new ArrayList<>();
 
-    static List<String> yPODescr = new ArrayList<>();
-    static List<String> yMODescr = new ArrayList<>();
-    static List<String> yPOCate = new ArrayList<>();
-    static List<String> yMOCate = new ArrayList<>();
+     List<String> yPODescr = new ArrayList<>();
+     List<String> yMODescr = new ArrayList<>();
+     List<String> yPOCate = new ArrayList<>();
+     List<String> yMOCate = new ArrayList<>();
 
     private Parameterr parameterr;
-
-
 
     public ExecutableFile() {
 
@@ -86,24 +86,38 @@ public class ExecutableFile {
         //столбец времени
 
         /// Основной код программы
-        int identificationTime = 1;
-        MonthReport monthReport = new MonthReport(dataFile, timeColumn, categories, description, operation, mPODescr, mMODescr, mPOCate, mMOCate, identificationTime);
-        monthReport.report();
+        RunnableReportMonth runnableReportMonth = new RunnableReportMonth(categories, description
+                , operation, timeColumn, mPODescr, mMODescr, mPOCate, mMOCate, dataFile);
+        Thread runnableReportMonthThread = new Thread(runnableReportMonth);
+        runnableReportMonthThread.start();
         //месячный отсчет
-        identificationTime = 2;
-        MonthReport quarterReport = new MonthReport(dataFile, timeColumn, categories, description, operation, qPODescr, qMODescr, qPOCate, qMOCate, identificationTime);
-        quarterReport.report();
+        RunnableReportQuarter runnableReportQuarter = new RunnableReportQuarter(categories, description
+                , operation, timeColumn, qPODescr, qMODescr, qPOCate, qMOCate, dataFile);
+        Thread runnableReportQuarterThread = new Thread(runnableReportQuarter);
+        runnableReportQuarterThread.start();
         //квартальный отсчет
-        identificationTime = 3;
-        MonthReport yearReport = new MonthReport(dataFile, timeColumn, categories, description, operation, yPODescr, yMODescr, yPOCate, yMOCate, identificationTime);
-        yearReport.report();
+        RunnableReportYear runnableReportYear = new RunnableReportYear(categories, description
+                , operation, timeColumn, yPODescr, yMODescr, yPOCate, yMOCate, dataFile);
+        Thread runnableReportYearThread = new Thread(runnableReportYear);
+        runnableReportYearThread.start();
         //годовой отсчет
         ///
 
+        try {
+            runnableReportMonthThread.join();
+            runnableReportQuarterThread.join();
+            runnableReportYearThread.join();
+        } catch (InterruptedException e) {
+            System.out.println("Ошибка потоков");
+        }
 
-        parameterr = new Parameterr(monthReport.getPODescrArr(), monthReport.getMODescrArr(), monthReport.getPOCateArr(),
-                monthReport.getMOCateArr(), quarterReport.getPODescrArr(), quarterReport.getMODescrArr(), quarterReport.getPOCateArr(),
-                quarterReport.getMOCateArr(), yearReport.getPODescrArr(), yearReport.getMODescrArr(), yearReport.getPOCateArr(), yearReport.getMOCateArr());
+
+        parameterr = new Parameterr(RunnableReportMonth.getMPODA(), RunnableReportMonth.getMMODA(), RunnableReportMonth.getMPOCA(),
+                RunnableReportMonth.getMMOCA()
+                , RunnableReportQuarter.getQPODA(), RunnableReportQuarter.getQMODA(), RunnableReportQuarter.getQPOCA(),
+                RunnableReportQuarter.getQMOCA()
+                , RunnableReportYear.getYPODA(), RunnableReportYear.getYMODA(), RunnableReportYear.getYPOCA()
+                , RunnableReportYear.getYMOCA());
         //сериализуемый класс
 
         Serializable serializable = new Serializable(parameterr);
@@ -115,6 +129,148 @@ public class ExecutableFile {
         des.deserialize();
         //десериализация
 
+    }
 
+}
+
+
+/// ///
+class RunnableReportMonth implements Runnable {
+    private final int categories;
+    private final int description;
+    private final int operation;
+    private final int timeColumn;
+    private final List<String> mPODescr;
+    private final List<String> mMODescr;
+    private final List<String> mPOCate;
+    private final List<String> mMOCate;
+    private final Identification dataFile;
+
+    private volatile static String[][] mPODA;
+    private volatile static String[][] mMODA;
+    private volatile static String[][] mPOCA;
+    private volatile static String[][] mMOCA;
+
+
+    public RunnableReportMonth(int categories, int description, int operation, int timeColumn
+            ,  List<String> mPODescr, List<String> mMODescr, List<String> mPOCate, List<String> mMOCate, Identification dataFile) {
+        this.categories = categories;
+        this.description = description;
+        this.operation = operation;
+        this.timeColumn = timeColumn;
+        this.mPODescr = mPODescr;
+        this.mMODescr = mMODescr;
+        this.mPOCate = mPOCate;
+        this.mMOCate = mMOCate;
+        this.dataFile = dataFile;
+    }
+
+    public static String[][] getMPODA() {return mPODA;}
+    public static String[][] getMMODA() {return mMODA;}
+    public static String[][] getMPOCA() {return mPOCA;}
+    public static String[][] getMMOCA() {return mMOCA;}
+
+    @Override
+    public void run() {
+        int identificationTime = 1;
+        RunnableReport monthReport = new RunnableReport(dataFile, timeColumn, categories, description, operation
+                , mPODescr, mMODescr, mPOCate, mMOCate, identificationTime);
+        monthReport.report();
+        mPODA = monthReport.getPODescrArr();
+        mMODA = monthReport.getMODescrArr();
+        mPOCA = monthReport.getPOCateArr();
+        mMOCA = monthReport.getMOCateArr();
+        //месячный отсчет
     }
 }
+class RunnableReportQuarter implements Runnable {
+    private final int categories;
+    private final int description;
+    private final int operation;
+    private final int timeColumn;
+    private final List<String> qPODescr;
+    private final List<String> qMODescr;
+    private final List<String> qPOCate;
+    private final List<String> qMOCate;
+    private final Identification dataFile;
+    private static String[][] qPODA;
+    private static String[][] qMODA;
+    private static String[][] qPOCA;
+    private static String[][] qMOCA;
+
+    public RunnableReportQuarter(int categories, int description, int operation, int timeColumn
+            ,  List<String> qPODescr, List<String> qMODescr, List<String> qPOCate, List<String> qMOCate, Identification dataFile) {
+        this.categories = categories;
+        this.description = description;
+        this.operation = operation;
+        this.timeColumn = timeColumn;
+        this.qPODescr = qPODescr;
+        this.qMODescr = qMODescr;
+        this.qPOCate = qPOCate;
+        this.qMOCate = qMOCate;
+        this.dataFile = dataFile;
+    }
+    public static String[][] getQPODA() {return qPODA;}
+    public static String[][] getQMODA() {return qMODA;}
+    public static String[][] getQPOCA() {return qPOCA;}
+    public static String[][] getQMOCA() {return qMOCA;}
+
+    @Override
+    public void run() {
+        int identificationTime = 2;
+        RunnableReport quarterReport = new RunnableReport(dataFile, timeColumn, categories, description, operation
+                , qPODescr, qMODescr, qPOCate, qMOCate, identificationTime);
+        quarterReport.report();
+        qPODA = quarterReport.getPODescrArr();
+        qMODA = quarterReport.getMODescrArr();
+        qPOCA = quarterReport.getPOCateArr();
+        qMOCA = quarterReport.getMOCateArr();
+        //квартальный отсчет
+    }
+}
+class RunnableReportYear implements Runnable {
+    private final int categories;
+    private final int description;
+    private final int operation;
+    private final int timeColumn;
+    private final List<String> yPODescr;
+    private final List<String> yMODescr;
+    private final List<String> yPOCate;
+    private final List<String> yMOCate;
+    private final Identification dataFile;
+    private static String[][] yPODA;
+    private static String[][] yMODA;
+    private static String[][] yPOCA;
+    private static String[][] yMOCA;
+
+    public RunnableReportYear(int categories, int description, int operation, int timeColumn
+            ,  List<String> yPODescr, List<String> yMODescr, List<String> yPOCate, List<String> yMOCate, Identification dataFile) {
+        this.categories = categories;
+        this.description = description;
+        this.operation = operation;
+        this.timeColumn = timeColumn;
+        this.yPODescr = yPODescr;
+        this.yMODescr = yMODescr;
+        this.yPOCate = yPOCate;
+        this.yMOCate = yMOCate;
+        this.dataFile = dataFile;
+    }
+    public static String[][] getYPODA() {return yPODA;}
+    public static String[][] getYMODA() {return yMODA;}
+    public static String[][] getYPOCA() {return yPOCA;}
+    public static String[][] getYMOCA() {return yMOCA;}
+
+    @Override
+    public void run() {
+        int identificationTime = 3;
+        RunnableReport yearReport = new RunnableReport(dataFile, timeColumn, categories, description
+                , operation, yPODescr, yMODescr, yPOCate, yMOCate, identificationTime);
+        yearReport.report();
+        yPODA = yearReport.getPODescrArr();
+        yMODA = yearReport.getMODescrArr();
+        yPOCA = yearReport.getPOCateArr();
+        yMOCA = yearReport.getMOCateArr();
+        //годовой отсчет
+    }
+}
+

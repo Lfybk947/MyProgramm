@@ -7,7 +7,8 @@ import org.TransactionPD.Interfaces.TimeInterfaces;
 
 import java.util.List;
 
-public class MonthReport {
+
+public class RunnableReport {
     static int exitMonth;
     static int amountMonth;
     private final Identification dataFile;
@@ -27,7 +28,7 @@ public class MonthReport {
 
     private final int identificationTime;
 
-    public MonthReport(Identification dataFile, int timeColumn, int categories, int description, int operation,
+    public RunnableReport(Identification dataFile, int timeColumn, int categories, int description, int operation,
                        List<String> mPODescr, List<String> mMODescr, List<String> mPOCate, List<String> mMOCate, int identificationTime) {
         this.dataFile = dataFile;
         this.timeColumn = timeColumn;
@@ -46,7 +47,6 @@ public class MonthReport {
     public String[][] getMODescrArr() {return MODescrArr;}
     public String[][] getPOCateArr() {return POCateArr;}
     public String[][] getMOCateArr() {return MOCateArr;}
-
 
 
     public void report() {

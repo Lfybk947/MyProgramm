@@ -10,31 +10,9 @@ import java.io.IOException;
 
 public class CreateInterface extends JFrame {
 
-//    private final String[][] mPODescrArr;
-//    private final String[][] mMODescrArr;
-//    private final String[][] mPOCateArr;
-//    private final String[][] mMOCateArr;
-//
-//    private final String[][] qPODescrArr;
-//    private final String[][] qMODescrArr;
-//    private final String[][] qPOCateArr;
-//    private final String[][] qMOCateArr;
-//
-//    private final String[][] yPODescrArr;
-//    private final String[][] yMODescrArr;
-//    private final String[][] yPOCateArr;
-//    private final String[][] yMOCateArr;
-
-    private Parameterr parameterr;
+//    private final Parameterr parameterr;
 
     public CreateInterface(Parameterr parameterr) {
-
-//    }
-
-//    public CreateInterface(String[][] mPODescrArr, String[][] mMODescrArr, String[][] mPOCateArr, String[][] mMOCateArr,
-//                           String[][] qPODescrArr, String[][] qMODescrArr, String[][] qPOCateArr, String[][] qMOCateArr,
-//                           String[][] yPODescrArr, String[][] yMODescrArr, String[][] yPOCateArr, String[][] yMOCateArr) {
-
         super("Transaction Program Data");//название программы
         this.setBounds(100, 100, 100, 200);//размер поля
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//закрытие поля
@@ -43,21 +21,7 @@ public class CreateInterface extends JFrame {
         } catch (IOException e) {
             System.out.println("Отсутствует файл иконки приложения");
         }
-        this.parameterr = parameterr;
-//        this.mPODescrArr = mPODescrArr;
-//        this.mMODescrArr = mMODescrArr;
-//        this.mPOCateArr = mPOCateArr;
-//        this.mMOCateArr = mMOCateArr;
-//
-//        this.qPODescrArr = qPODescrArr;
-//        this.qMODescrArr = qMODescrArr;
-//        this.qPOCateArr = qPOCateArr;
-//        this.qMOCateArr = qMOCateArr;
-//
-//        this.yPODescrArr = yPODescrArr;
-//        this.yMODescrArr = yMODescrArr;
-//        this.yPOCateArr = yPOCateArr;
-//        this.yMOCateArr = yMOCateArr;
+//        this.parameterr = parameterr;
 
         Font font = new Font("Verdana", Font.PLAIN, 12);
         final JTabbedPane tabbedPane = new JTabbedPane();
@@ -94,20 +58,22 @@ public class CreateInterface extends JFrame {
         JScrollPane scrolPane33 = new JScrollPane((table33));
         JScrollPane scrolPane34 = new JScrollPane((table34));
 
-//        JCheckBox Button1 = new JCheckBox("");
-//        Button1.setMnemonic(KeyEvent.VK_C);
-//        Button1.setSelected(false);
-//        table11.add(Button1);
+/*
+*
+        JCheckBox Button1 = new JCheckBox("");
+        Button1.setMnemonic(KeyEvent.VK_C);
+        Button1.setSelected(false);
+        table11.add(Button1);
 
-//        JButton addFile = new JButton("Добавить файл");
-//        addFile.setFont(font);
-//        addFile.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//            }
-//        });
+        JButton addFile = new JButton("Добавить файл");
+        addFile.setFont(font);
+        addFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+            }
+        });
+*/
 
         JTabbedPane tabbedPane1 = new JTabbedPane();//1-месяцы
 
@@ -134,11 +100,6 @@ public class CreateInterface extends JFrame {
         tabbedPane3.addTab("Пополнения по категориям", scrolPane32);
         tabbedPane3.addTab("Траты по описанию", scrolPane33);
         tabbedPane3.addTab("Траты по категориям", scrolPane34);
-
-
-
-
-
 
 
 
