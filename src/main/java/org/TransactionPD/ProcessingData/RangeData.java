@@ -98,11 +98,14 @@ public class RangeData {
 
 
     public void printOutputData() {
-//        for (int i = 0; i < minusDataFileCateDescr.length; i++) {
-//            System.out.print(Arrays.toString(minusDataFileCateDescr[i]));
-//            System.out.print(Arrays.toString(minusOutputData[i]));
-//            System.out.println();
-//        }
+/*
+*
+        for (int i = 0; i < minusDataFileCateDescr.length; i++) {
+            System.out.print(Arrays.toString(minusDataFileCateDescr[i]));
+            System.out.print(Arrays.toString(minusOutputData[i]));
+            System.out.println();
+        }
+*/
         for (int i = 0; i < plusDataFileCateDescr.length; i++) {
             System.out.print(Arrays.toString(plusDataFileCateDescr[i]));
             System.out.print(Arrays.toString(plusOutputDataDescription[i]));

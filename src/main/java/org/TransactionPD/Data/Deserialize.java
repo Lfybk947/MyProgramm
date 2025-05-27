@@ -3,10 +3,9 @@ package org.TransactionPD.Data;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.Arrays;
+
 
 public class Deserialize {
-
 
     public void deserialize() {
         Parameterr newParameter = null;
@@ -17,12 +16,10 @@ public class Deserialize {
             fileIn.close();
 
             System.out.println("Десериализация прошла успешно");
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (ClassNotFoundException r) {
-            r.printStackTrace();
             System.out.println("Класс не найден");
-            return;
+        }  catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
 

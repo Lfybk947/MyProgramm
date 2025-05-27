@@ -1,15 +1,15 @@
 package org.TransactionPD.Interfaces;
 
 public interface TimeInterfaces {
-    public void timeInterfaces(int amount);
+     void timeInterfaces(int amount);
 
-    public int getPlusStartNumber();
-    public int getPlusEndNumber();
-    public int getMinusStartNumber();
-    public int getMinusEndNumber();
-    public int getPlusMonth();
-    public int getPlusYears();
-    public int getMinusMonth();
-    public int getMinusYears();
-    public void printStringData();
+     int getPlusStartNumber();
+     int getPlusEndNumber();
+     int getMinusStartNumber();
+     int getMinusEndNumber();
+     int getPlusMonth();
+     int getPlusYears();
+     int getMinusMonth();
+     int getMinusYears();
+     void printStringData();
 }

@@ -1,6 +1,7 @@
 package org.TransactionPD.Data;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -32,18 +33,22 @@ public class CreateOutputFile {
         return writerYear;
     }
 
-    public void createOutputData() throws IOException {
-        String extension = ".txt";
-        fileMonth = new File(fileNameMonth + extension);
-        fileMonth.createNewFile();
-        writerMonth = new PrintWriter(fileMonth);
+    public void createOutputData() {
+        try {
+            String extension = ".txt";
+            fileMonth = new File(fileNameMonth + extension);
+            fileMonth.createNewFile();
+            writerMonth = new PrintWriter(fileMonth);
 
-        fileQuarter = new File(fileNameQuarter + extension);
-        fileQuarter.createNewFile();
-        writerQuarter = new PrintWriter(fileQuarter);
+            fileQuarter = new File(fileNameQuarter + extension);
+            fileQuarter.createNewFile();
+            writerQuarter = new PrintWriter(fileQuarter);
 
-        fileYear = new File(fileNameYear + extension);
-        fileYear.createNewFile();
-        writerYear = new PrintWriter(fileYear);
+            fileYear = new File(fileNameYear + extension);
+            fileYear.createNewFile();
+            writerYear = new PrintWriter(fileYear);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -9,8 +9,6 @@ import java.util.List;
 
 
 public class RunnableReport {
-    static int exitMonth;
-    static int amountMonth;
     private final Identification dataFile;
     private final int timeColumn;
     private final int categories;
@@ -72,12 +70,12 @@ public class RunnableReport {
         }
 
         public static ReportStringS monthReport(int identificationTime, Identification dataFile, int timeColumn, int categories,
-                                                int  description, int operation, List<String> mPODescr, List<String> mMODescr,
+                                                int description, int operation, List<String> mPODescr, List<String> mMODescr,
                                                 List<String> mPOCate, List<String> mMOCate) {
-            amountMonth = 0;
+            int amountMonth = 0;
             int i = 0;
             while (true) {//месяцы
-                exitMonth = 0;
+                int exitMonth = 0;
                 i++;
                 TimeInterfaces time;
                 if (identificationTime==1) {

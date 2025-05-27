@@ -6,10 +6,10 @@ import java.util.List;
 
 
 public class FormaInterface {
-    private final List<String> PODescr;
-    private final List<String> MODescr;
-    private final List<String> POCate;
-    private final List<String> MOCate;
+    private  List<String> PODescr;
+    private  List<String> MODescr;
+    private  List<String> POCate;
+    private  List<String> MOCate;
     private  String[][] PODescrArr;
     private  String[][] MODescrArr;
     private  String[][] POCateArr;

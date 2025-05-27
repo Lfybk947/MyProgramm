@@ -1,11 +1,9 @@
 package org.TransactionPD.ProcessingData;
 
 import org.TransactionPD.Data.*;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
+
 
 public class ExecutableFile {
     static int categories;
@@ -70,11 +68,7 @@ public class ExecutableFile {
         fileNameQuarter = "OutputQuarter";
         fileNameYear = "OutputYear";
         CreateOutputFile createFile = new CreateOutputFile(fileNameMonth, fileNameQuarter, fileNameYear);
-        try {
-            createFile.createOutputData();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        createFile.createOutputData();
         //создание файлов
 
         /* проверка
@@ -172,15 +166,17 @@ class RunnableReportMonth implements Runnable {
 
     @Override
     public void run() {
-        int identificationTime = 1;
-        RunnableReport monthReport = new RunnableReport(dataFile, timeColumn, categories, description, operation
-                , mPODescr, mMODescr, mPOCate, mMOCate, identificationTime);
-        monthReport.report();
-        mPODA = monthReport.getPODescrArr();
-        mMODA = monthReport.getMODescrArr();
-        mPOCA = monthReport.getPOCateArr();
-        mMOCA = monthReport.getMOCateArr();
-        //месячный отсчет
+        synchronized (RunnableReportMonth.class) {//это не работает
+            int identificationTime = 1;
+            RunnableReport monthReport = new RunnableReport(dataFile, timeColumn, categories, description, operation
+                    , mPODescr, mMODescr, mPOCate, mMOCate, identificationTime);
+            monthReport.report();
+            mPODA = monthReport.getPODescrArr();
+            mMODA = monthReport.getMODescrArr();
+            mPOCA = monthReport.getPOCateArr();
+            mMOCA = monthReport.getMOCateArr();
+            //месячный отсчет
+        }
     }
 }
 class RunnableReportQuarter implements Runnable {
@@ -217,15 +213,17 @@ class RunnableReportQuarter implements Runnable {
 
     @Override
     public void run() {
-        int identificationTime = 2;
-        RunnableReport quarterReport = new RunnableReport(dataFile, timeColumn, categories, description, operation
-                , qPODescr, qMODescr, qPOCate, qMOCate, identificationTime);
-        quarterReport.report();
-        qPODA = quarterReport.getPODescrArr();
-        qMODA = quarterReport.getMODescrArr();
-        qPOCA = quarterReport.getPOCateArr();
-        qMOCA = quarterReport.getMOCateArr();
-        //квартальный отсчет
+        synchronized (RunnableReportQuarter.class) {
+            int identificationTime = 2;
+            RunnableReport quarterReport = new RunnableReport(dataFile, timeColumn, categories, description, operation
+                    , qPODescr, qMODescr, qPOCate, qMOCate, identificationTime);
+            quarterReport.report();
+            qPODA = quarterReport.getPODescrArr();
+            qMODA = quarterReport.getMODescrArr();
+            qPOCA = quarterReport.getPOCateArr();
+            qMOCA = quarterReport.getMOCateArr();
+            //квартальный отсчет
+        }
     }
 }
 class RunnableReportYear implements Runnable {
@@ -262,15 +260,17 @@ class RunnableReportYear implements Runnable {
 
     @Override
     public void run() {
-        int identificationTime = 3;
-        RunnableReport yearReport = new RunnableReport(dataFile, timeColumn, categories, description
-                , operation, yPODescr, yMODescr, yPOCate, yMOCate, identificationTime);
-        yearReport.report();
-        yPODA = yearReport.getPODescrArr();
-        yMODA = yearReport.getMODescrArr();
-        yPOCA = yearReport.getPOCateArr();
-        yMOCA = yearReport.getMOCateArr();
-        //годовой отсчет
+        synchronized (RunnableReportYear.class) {
+            int identificationTime = 3;
+            RunnableReport yearReport = new RunnableReport(dataFile, timeColumn, categories, description
+                    , operation, yPODescr, yMODescr, yPOCate, yMOCate, identificationTime);
+            yearReport.report();
+            yPODA = yearReport.getPODescrArr();
+            yMODA = yearReport.getMODescrArr();
+            yPOCA = yearReport.getPOCateArr();
+            yMOCA = yearReport.getMOCateArr();
+            //годовой отсчет
+        }
     }
 }
 

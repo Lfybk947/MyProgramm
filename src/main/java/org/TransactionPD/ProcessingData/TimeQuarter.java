@@ -45,37 +45,21 @@ public class TimeQuarter implements TimeInterfaces {
 
     }
     @Override
-    public int getPlusStartNumber() {
-        return plusStartNumber;
-    }
+    public int getPlusStartNumber() {return plusStartNumber;}
     @Override
-    public int getPlusEndNumber() {
-        return plusEndNumber;
-    }
+    public int getPlusEndNumber() {return plusEndNumber;}
     @Override
-    public int getMinusStartNumber() {
-        return minusStartNumber;
-    }
+    public int getMinusStartNumber() {return minusStartNumber;}
     @Override
-    public int getMinusEndNumber() {
-        return minusEndNumber;
-    }
+    public int getMinusEndNumber() {return minusEndNumber;}
     @Override
-    public int getPlusMonth() {
-        return plusMonth;
-    }
+    public int getPlusMonth() {return plusMonth;}
     @Override
-    public int getPlusYears() {
-        return plusYears;
-    }
+    public int getPlusYears() {return plusYears;}
     @Override
-    public int getMinusMonth() {
-        return minusMonth;
-    }
+    public int getMinusMonth() {return minusMonth;}
     @Override
-    public int getMinusYears() {
-        return minusYears;
-    }
+    public int getMinusYears() {return minusYears;}
 
     public int timeLastQuarter(String[][] inputData, int time) {//последний квартал
         String[] timeLas = inputData[1][timeColumn].split("\\.");

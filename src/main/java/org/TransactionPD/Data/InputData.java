@@ -16,9 +16,8 @@ public class InputData {
     String number;
 //    String[] number2;
 
-    public String[][] getInputData() {
-        return inputData;
-    }
+    public String[][] getInputData() {return inputData;}
+
 //    public void setLinkFile(String linkFile) {
 //        this.linkFile=linkFile;
 //    }

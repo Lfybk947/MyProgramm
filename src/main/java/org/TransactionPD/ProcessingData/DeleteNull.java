@@ -98,8 +98,8 @@ public class DeleteNull {
 
         public static DeleteOutput deleteOutputData(double[][] outputData, String[][] outputCateDescr, int cateDescr) {
             int k=0;
-            for (int i = 0; i <outputData.length; i++) {
-                if (outputData[i][0]!=0.0) {
+            for (double[] outputDatum : outputData) {
+                if (outputDatum[0] != 0.0) {
                     k++;
                 }
             }
