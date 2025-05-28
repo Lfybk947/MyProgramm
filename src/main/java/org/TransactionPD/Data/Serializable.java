@@ -15,27 +15,18 @@ public class Serializable {//сериализация класса Parameterr
         serializableMitod(parameterr);
     }
 
-
-
     public void serializableMitod(Parameterr parameterr) {
-        FileOutputStream fileOut = null;
+        FileOutputStream fileOut;
         try {
             fileOut = new FileOutputStream("employee.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(parameterr);
-
-
-
             out.close();
             fileOut.close();
             System.out.println("Сериализация данных сохранена в employee.ser");
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 }

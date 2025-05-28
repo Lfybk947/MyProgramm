@@ -8,11 +8,11 @@ import java.io.ObjectInputStream;
 public class Deserialize {
 
     public void deserialize() {
-        Parameterr newParameter = null;
+//        Parameterr newParameter = null;
         try {
             FileInputStream fileIn = new FileInputStream("employee.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            newParameter = (Parameterr) in.readObject();
+            in.readObject();
             fileIn.close();
 
             System.out.println("Десериализация прошла успешно");

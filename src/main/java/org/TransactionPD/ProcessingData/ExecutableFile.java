@@ -6,67 +6,59 @@ import java.util.List;
 
 
 public class ExecutableFile {
-    static int categories;
-    static int description;
-    static int operation;
-    static int numberColumn;
-    static int timeColumn;
-    static String fileNameMonth;
-    static String fileNameQuarter;
-    static String fileNameYear;
+    private final int categories;
+    private final int description;
+    private final int operation;
+    private final int numberColumn;
+    private final int timeColumn;
+    private final String fileNameMonth;
+    private final String fileNameQuarter;
+    private final String fileNameYear;
 
+    List<String> mPODescr = new ArrayList<>();
+    List<String> mMODescr = new ArrayList<>();
+    List<String> mPOCate = new ArrayList<>();
+    List<String> mMOCate = new ArrayList<>();
 
-//     AtomicReference<ArrayList<String>> mPODescr = new AtomicReference<>();
-     List<String> mPODescr = new ArrayList<>();
-     List<String> mMODescr = new ArrayList<>();
-     List<String> mPOCate = new ArrayList<>();
-     List<String> mMOCate = new ArrayList<>();
+    List<String> qPODescr = new ArrayList<>();
+    List<String> qMODescr = new ArrayList<>();
+    List<String> qPOCate = new ArrayList<>();
+    List<String> qMOCate = new ArrayList<>();
 
-     List<String> qPODescr = new ArrayList<>();
-     List<String> qMODescr = new ArrayList<>();
-     List<String> qPOCate = new ArrayList<>();
-     List<String> qMOCate = new ArrayList<>();
-
-     List<String> yPODescr = new ArrayList<>();
-     List<String> yMODescr = new ArrayList<>();
-     List<String> yPOCate = new ArrayList<>();
-     List<String> yMOCate = new ArrayList<>();
+    List<String> yPODescr = new ArrayList<>();
+    List<String> yMODescr = new ArrayList<>();
+    List<String> yPOCate = new ArrayList<>();
+    List<String> yMOCate = new ArrayList<>();
 
     private Parameterr parameterr;
 
-    public ExecutableFile() {
+    public ExecutableFile(int numberColumn, int categories, int description, int operation, int timeColumn
+            , String fileNameMonth, String fileNameQuarter, String fileNameYear) {
+        this.numberColumn = numberColumn;
+        this.categories = categories;
+        this.description = description;
+        this.operation = operation;
+        this.timeColumn = timeColumn;
+        this.fileNameMonth = fileNameMonth;
+        this.fileNameQuarter = fileNameQuarter;
+        this.fileNameYear = fileNameYear;
 
     }
-    public Parameterr getParameterr() {
-        return parameterr;
-    }
-
+    public Parameterr getParameterr() {return parameterr;}
 
     public void executable() {
 
-        numberColumn = 15;
-        //общее количество столбцов
         InputData inputDataFile = new InputData("operations.csv", numberColumn);
         //сюда будем передавать ссылку на файл
         inputDataFile.inputDataFile();
         //импорт данных из файла и запись в массив inputData
 
-
-        categories = 9;
-        //категории
-        description = 11;
-        //описание
-        operation = 6;
-        //операции
         Identification dataFile = new Identification(inputDataFile.getInputData(),categories, description, operation, numberColumn);
         dataFile.operationInputData();
         //разделение поступлений и трат
         dataFile.sortFile();
         //Идентификация категорий и описания отдельно
 
-        fileNameMonth = "OutputMonth";
-        fileNameQuarter = "OutputQuarter";
-        fileNameYear = "OutputYear";
         CreateOutputFile createFile = new CreateOutputFile(fileNameMonth, fileNameQuarter, fileNameYear);
         createFile.createOutputData();
         //создание файлов
@@ -75,9 +67,6 @@ public class ExecutableFile {
         inputDataFile.printArr();
         dataFile.dataPrint2();//печать массивов с категориями и описанием
          */
-
-        timeColumn = 0;
-        //столбец времени
 
         /// Основной код программы
         RunnableReportMonth runnableReportMonth = new RunnableReportMonth(categories, description

@@ -1,7 +1,6 @@
 package org.TransactionPD.Data;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -37,15 +36,15 @@ public class CreateOutputFile {
         try {
             String extension = ".txt";
             fileMonth = new File(fileNameMonth + extension);
-            fileMonth.createNewFile();
+            Boolean r1 = fileMonth.createNewFile();
             writerMonth = new PrintWriter(fileMonth);
 
             fileQuarter = new File(fileNameQuarter + extension);
-            fileQuarter.createNewFile();
+            Boolean r2 = fileQuarter.createNewFile();
             writerQuarter = new PrintWriter(fileQuarter);
 
             fileYear = new File(fileNameYear + extension);
-            fileYear.createNewFile();
+            Boolean r3 = fileYear.createNewFile();
             writerYear = new PrintWriter(fileYear);
         } catch (IOException e) {
             throw new RuntimeException(e);
