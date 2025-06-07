@@ -1,5 +1,7 @@
 package org.TransactionPD.Data;
 
+import java.io.File;
+
 public class StartedNumbers {
     private int numberColumn;// = 15;
     //общее количество столбцов
@@ -14,10 +16,11 @@ public class StartedNumbers {
     private String fileNameMonth; //= "OutputMonth";
     private String fileNameQuarter; //= "OutputQuarter";
     private String fileNameYear; //= "OutputYear";
+    private final File selectedFile;
 
 
     public StartedNumbers(int numberColumn, int categories, int description, int operation, int timeColumn
-            , String fileNameMonth, String fileNameQuarter, String fileNameYear) {
+            , String fileNameMonth, String fileNameQuarter, String fileNameYear, File selectedFile) {
         this.numberColumn = numberColumn;
         this.categories = categories;
         this.description = description;
@@ -26,6 +29,7 @@ public class StartedNumbers {
         this.fileNameMonth = fileNameMonth;
         this.fileNameQuarter = fileNameQuarter;
         this.fileNameYear = fileNameYear;
+        this.selectedFile = selectedFile;
     }
 
     public int getNumberColumn() {return numberColumn;}
@@ -36,6 +40,7 @@ public class StartedNumbers {
     public String getFileNameMonth() {return fileNameMonth;}
     public String getFileNameQuarter() {return fileNameQuarter;}
     public String getFileNameYear() {return fileNameYear;}
+    public File getSelectedFile() {return selectedFile;}
 
 
     public void setNumberColumn(int numberColumn) {this.numberColumn = numberColumn;}

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class InputData {
     private String[][] inputData;
-    private final String linkFile;
+    private final File linkFile;
     private File table;
     private Scanner scan;
     private int numberString;
@@ -21,7 +21,7 @@ public class InputData {
 //    public void setLinkFile(String linkFile) {
 //        this.linkFile=linkFile;
 //    }
-    public InputData(String linkFile, int numberColumn) {
+    public InputData(File linkFile, int numberColumn) {
         this.linkFile = linkFile;
         this.numberColumn = numberColumn;
     }
@@ -30,9 +30,10 @@ public class InputData {
 //        path ="D:"+separator+"operations.csv";
 //        table = new File(path);
 //        table = new File("operations.csv");//случай если файл не в дирректории кода программы, прописываем ссылку
-        table = new File(linkFile);//сделать добавления ссылки на файл или перемещение может файла по кнопке, чтобы не прописывать его сюда постоянно
-
         try {
+        table = linkFile;//сделать добавления ссылки на файл или перемещение может файла по кнопке, чтобы не прописывать его сюда постоянно
+//        table = new File(linkFile);
+
             scan = new Scanner(table);//сделать возможность использования вайла с расширением Excel
         } catch (FileNotFoundException e) {
             System.out.println("Файл отсутствует");

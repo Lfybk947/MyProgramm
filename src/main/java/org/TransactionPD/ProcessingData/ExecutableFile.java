@@ -1,6 +1,8 @@
 package org.TransactionPD.ProcessingData;
 
 import org.TransactionPD.Data.*;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +33,10 @@ public class ExecutableFile {
     List<String> yMOCate = new ArrayList<>();
 
     private Parameterr parameterr;
+    private final File selectedFile;
 
     public ExecutableFile(int numberColumn, int categories, int description, int operation, int timeColumn
-            , String fileNameMonth, String fileNameQuarter, String fileNameYear) {
+            , String fileNameMonth, String fileNameQuarter, String fileNameYear, File selectedFile) {
         this.numberColumn = numberColumn;
         this.categories = categories;
         this.description = description;
@@ -42,13 +45,13 @@ public class ExecutableFile {
         this.fileNameMonth = fileNameMonth;
         this.fileNameQuarter = fileNameQuarter;
         this.fileNameYear = fileNameYear;
-
+        this.selectedFile = selectedFile;
     }
     public Parameterr getParameterr() {return parameterr;}
 
     public void executable() {
 
-        InputData inputDataFile = new InputData("operations.csv", numberColumn);
+        InputData inputDataFile = new InputData(selectedFile, numberColumn);
         //сюда будем передавать ссылку на файл
         inputDataFile.inputDataFile();
         //импорт данных из файла и запись в массив inputData

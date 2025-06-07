@@ -22,9 +22,7 @@ public class CreateOutputFile {
         this.fileNameYear = fileNameYear;
     }
 
-    public static PrintWriter getWriterMonth() {
-        return writerMonth;
-    }
+    public static PrintWriter getWriterMonth() {return writerMonth;}
     public static PrintWriter getWriterQuarter() {
         return writerQuarter;
     }

@@ -214,7 +214,7 @@ public class Identification {
         }
     }
     public void dataPrint2() {/*
-печать
+        печать
         for (int i = 0; i < plusInputData.length; i++) {
             System.out.print(i);
             System.out.println(Arrays.toString(plusInputData[i]));
