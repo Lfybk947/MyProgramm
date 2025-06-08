@@ -7,16 +7,18 @@ import org.TransactionPD.ProcessingData.ExecutableFile;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.locks.Lock;
 
 public class CreateInterface extends JFrame {
     File selectedFile;
-    private Parameterr parameterr;
+//    private final Parameterr parameterr;
+    static int i;
+    Process firstLock;
+    JTabbedPane tabbedPane;
 
-    public CreateInterface() {
+    public CreateInterface(Process firstLock) {
         super("Transaction Program Data");//название программы
         this.setBounds(100, 100, 100, 200);//размер поля
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//закрытие поля
@@ -25,7 +27,14 @@ public class CreateInterface extends JFrame {
         } catch (IOException e) {
             System.out.println("Отсутствует файл иконки приложения");
         }
+        this.firstLock = firstLock;
 //        this.parameterr = parameterr;
+    }
+    public File getSelectedFile() {
+        return selectedFile;
+    }
+    public JTabbedPane getTabbedPane() {
+        return tabbedPane;
     }
 
 
@@ -33,40 +42,15 @@ public class CreateInterface extends JFrame {
     public void createTables() {
 
         Font font = new Font("Verdana", Font.PLAIN, 12);
-        final JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.setFont(font);
-
+        JTabbedPane tabbedPann = new JTabbedPane();
         JPanel month = new JPanel();
         month.setLayout(new BorderLayout());
-        String[] columnNames = {"Time Data", "Categories", "Description", "Operation"};
-        /*
-        JPanel buttons = new JPanel();
-        month.add(buttons, BorderLayout.NORTH);
-        JButton add = new JButton("add file");
-        add.setFont(font);
-        add.addActionListener(e -> tabbedPane.addTab("tab", new JPanel()));
-        add.addActionListener(e -> tabbedPane.addTab("Месячный Отсчет", tabbedPane1););
-        buttons.add(add);
-        */
-
-
-        JTabbedPane tabbedPane1 = new JTabbedPane();//1-месяцы
-
-        JTabbedPane tabbedPane2 = new JTabbedPane();//2-кварталы
-
-        JTabbedPane tabbedPane3 = new JTabbedPane();//3-годы
-
-/*
-        tabbedPane.addTab("Месячный Отсчет", tabbedPane1);
-        tabbedPane.addTab("Квартальный Отсчет", tabbedPane2);
-        tabbedPane.addTab("Годовой Отсчет", tabbedPane3);
-*/
-
 
         JPanel buttons = new JPanel();
         month.add(buttons, BorderLayout.WEST);
         JButton add = new JButton("Select file");
         add.setFont(font);
+
 
         add.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();//window with choice
@@ -76,10 +60,14 @@ public class CreateInterface extends JFrame {
                 selectedFile = fileChooser.getSelectedFile();//give selected File
                 JOptionPane.showMessageDialog(month, "Selected file: " + selectedFile.getAbsolutePath()
                         , " Result", JOptionPane.INFORMATION_MESSAGE);
+
+                firstLock.notify();
+
             } else if (result == JFileChooser.CANCEL_OPTION) {
                 JOptionPane.showMessageDialog(month, "Operation cancelled", "Result", JOptionPane.WARNING_MESSAGE);
             }
-        ///
+            ///
+        /*
         StartedNumbers startedNumbers = new StartedNumbers(15,9
                 ,11,6,0,"OutputMonth", "OutputQuarter", "OutputYear", selectedFile);
 
@@ -88,8 +76,22 @@ public class CreateInterface extends JFrame {
                 , startedNumbers.getFileNameQuarter(), startedNumbers.getFileNameYear(), startedNumbers.getSelectedFile());
         executableProgramm.executable();
         parameterr = executableProgramm.getParameterr();
+
+         */
         ///
 
+//            firstLock.unlock();
+
+
+
+            tabbedPane = new JTabbedPane();
+            tabbedPann.addTab("File"+ i++, tabbedPane);
+            tabbedPann.setFont(font);
+
+/*
+            JTabbedPane tabbedPane1 = new JTabbedPane();//1-месяцы
+            JTabbedPane tabbedPane2 = new JTabbedPane();//2-кварталы
+            JTabbedPane tabbedPane3 = new JTabbedPane();//3-годы
 
             JComponent table11 = new JTable(parameterr.getmPODescrArr(), columnNames);//1-месяцы
             JComponent table12 = new JTable(parameterr.getmPOCateArr(), columnNames);
@@ -131,25 +133,25 @@ public class CreateInterface extends JFrame {
             tabbedPane3.addTab("Пополнения по категориям", scrolPane32);
             tabbedPane3.addTab("Траты по описанию", scrolPane33);
             tabbedPane3.addTab("Траты по категориям", scrolPane34);
+
+            tabbedPane.addTab("Годовой Отсчет", tabbedPane3);
+            tabbedPane.addTab("Квартальный Отсчет", tabbedPane2);
+            tabbedPane.addTab("Месячный Отсчет", tabbedPane1);
+*/
         });
 
 
-        add.addActionListener(e -> tabbedPane.addTab("Годовой Отсчет", tabbedPane3));
-        add.addActionListener(e -> tabbedPane.addTab("Квартальный Отсчет", tabbedPane2));
-        add.addActionListener(e -> tabbedPane.addTab("Месячный Отсчет", tabbedPane1));
 
         buttons.add(add);
+        month.add(tabbedPann, BorderLayout.CENTER);
 
-
-
-        month.add(tabbedPane, BorderLayout.CENTER);
 
         getContentPane().add(month);
-
         setPreferredSize(new Dimension(1000, 2000));
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
     }
 
 
