@@ -62,9 +62,10 @@ public class CreateTable {
         tabbedPane3.addTab("Траты по описанию", scrolPane33);
         tabbedPane3.addTab("Траты по категориям", scrolPane34);
 
-        tabbedPane.addTab("Годовой Отсчет", tabbedPane3);
-        tabbedPane.addTab("Квартальный Отсчет", tabbedPane2);
         tabbedPane.addTab("Месячный Отсчет", tabbedPane1);
+        tabbedPane.addTab("Квартальный Отсчет", tabbedPane2);
+        tabbedPane.addTab("Годовой Отсчет", tabbedPane3);
+
 
     }
 
