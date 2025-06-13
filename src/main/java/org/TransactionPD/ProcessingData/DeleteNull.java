@@ -1,6 +1,6 @@
 package org.TransactionPD.ProcessingData;
 
-import java.util.Arrays;
+
 
 public class DeleteNull {
     private final double[][] plusOutputDataDescription;
@@ -116,17 +116,4 @@ public class DeleteNull {
             return new DeleteOutput(d,s);
         }
     }
-
-
-
-    public void print() {
-        for (int i = 0; i < plusOutputDescr.length; i++) {
-            System.out.print(Arrays.toString(plusDescr[i]));
-            System.out.print(Arrays.toString(plusOutputDescr[i]));
-            System.out.println();
-        }
-        System.out.println();
-    }
-
-
 }

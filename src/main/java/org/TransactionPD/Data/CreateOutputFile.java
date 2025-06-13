@@ -11,9 +11,6 @@ public class CreateOutputFile {
     private static PrintWriter writerMonth;
     private static PrintWriter writerQuarter;
     private static PrintWriter writerYear;
-    private File fileMonth;
-    private File fileQuarter;
-    private File fileYear;
 
 
     public CreateOutputFile(String fileNameMonth, String fileNameQuarter, String fileNameYear) {
@@ -33,15 +30,15 @@ public class CreateOutputFile {
     public void createOutputData() {
         try {
             String extension = ".txt";
-            fileMonth = new File(fileNameMonth + extension);
+            File fileMonth = new File(fileNameMonth + extension);
             Boolean r1 = fileMonth.createNewFile();
             writerMonth = new PrintWriter(fileMonth);
 
-            fileQuarter = new File(fileNameQuarter + extension);
+            File fileQuarter = new File(fileNameQuarter + extension);
             Boolean r2 = fileQuarter.createNewFile();
             writerQuarter = new PrintWriter(fileQuarter);
 
-            fileYear = new File(fileNameYear + extension);
+            File fileYear = new File(fileNameYear + extension);
             Boolean r3 = fileYear.createNewFile();
             writerYear = new PrintWriter(fileYear);
         } catch (IOException e) {

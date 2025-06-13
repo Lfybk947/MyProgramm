@@ -21,8 +21,5 @@ public class Deserialize {
         }  catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
-
 }

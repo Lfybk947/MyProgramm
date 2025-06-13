@@ -1,7 +1,8 @@
 package org.TransactionPD.ProcessingData;
 
-import java.util.Arrays;
 import java.util.Objects;
+
+
 
 public class Identification {
     private final String[][] dataFile;//inputData
@@ -208,26 +209,4 @@ public class Identification {
             }
         }
     }
-    public void dataPrint() {//печать массивов с категориями и описанием
-        for (String[] strings : plusDataFileCateDescr) {
-            System.out.println(Arrays.toString(strings));
-        }
-    }
-    public void dataPrint2() {/*
-        печать
-        for (int i = 0; i < plusInputData.length; i++) {
-            System.out.print(i);
-            System.out.println(Arrays.toString(plusInputData[i]));
-        }
-*/
-        System.out.println();
-        System.out.println();
-        for (int i = 0; i < minusInputData.length; i++) {
-            System.out.print(i);
-            System.out.println(Arrays.toString(minusInputData[i]));
-        }
-    }
-
-
-
 }

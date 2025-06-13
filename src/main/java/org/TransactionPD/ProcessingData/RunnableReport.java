@@ -79,11 +79,11 @@ public class RunnableReport {
                 i++;
                 TimeInterfaces time;
                 if (identificationTime==1) {
-                    time = new TimeMonth(dataFile.getPlusInputData(), dataFile.getMinusInputData(), timeColumn, amountMonth);
+                    time = new TimeMonth(dataFile.getPlusInputData(), dataFile.getMinusInputData(), timeColumn);
                 } else if (identificationTime==2) {
-                    time = new TimeQuarter(dataFile.getPlusInputData(), dataFile.getMinusInputData(), timeColumn, amountMonth);
+                    time = new TimeQuarter(dataFile.getPlusInputData(), dataFile.getMinusInputData(), timeColumn);
                 } else {
-                    time = new TimeYear(dataFile.getPlusInputData(), dataFile.getMinusInputData(), timeColumn, amountMonth);
+                    time = new TimeYear(dataFile.getPlusInputData(), dataFile.getMinusInputData(), timeColumn);
                 }
                 time.timeInterfaces(amountMonth);
 

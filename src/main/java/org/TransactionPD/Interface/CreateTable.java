@@ -1,20 +1,12 @@
 package org.TransactionPD.Interface;
 
 import org.TransactionPD.Data.Parameterr;
-import org.TransactionPD.ProcessingData.ExecutableFile;
-
 import javax.swing.*;
-import java.awt.*;
 
 public class CreateTable {
-    private Parameterr parameterr;
-    private JTabbedPane tabbedPane;
 
     public CreateTable(Parameterr parameterr, JTabbedPane tabbedPane) {
-        this.parameterr = parameterr;
-        this.tabbedPane = tabbedPane;
         String[] columnNames = {"Time Data", "Categories", "Description", "Operation"};
-
 
 
         JTabbedPane tabbedPane1 = new JTabbedPane();//1-месяцы

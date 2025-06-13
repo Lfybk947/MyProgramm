@@ -6,7 +6,6 @@ public class TimeYear implements TimeInterfaces {
     private final String[][] plusInputData;
     private final String[][] minusInputData;
     private final int timeColumn;
-//    private final int amountYear;
     private int plusStartNumber;
     private int plusEndNumber;
     private int minusStartNumber;
@@ -15,11 +14,10 @@ public class TimeYear implements TimeInterfaces {
     private int minusYears;
 
 
-    public TimeYear(String[][] plusInputData, String[][] minusInputData, int timeColumn, int amountYear) {
+    public TimeYear(String[][] plusInputData, String[][] minusInputData, int timeColumn) {
         this.plusInputData = plusInputData;
         this.minusInputData = minusInputData;
         this.timeColumn = timeColumn;
-//        this.amountYear = amountYear;
     }
 
     @Override

@@ -1,20 +1,18 @@
 package org.TransactionPD.Interface;
 
-
-
 import java.util.List;
 
 
+
 public class FormaInterface {
-    private  List<String> PODescr;
-    private  List<String> MODescr;
-    private  List<String> POCate;
-    private  List<String> MOCate;
+    private final List<String> PODescr;
+    private final List<String> MODescr;
+    private final List<String> POCate;
+    private final List<String> MOCate;
     private  String[][] PODescrArr;
     private  String[][] MODescrArr;
     private  String[][] POCateArr;
     private  String[][] MOCateArr;
-
 
     public FormaInterface(List<String> PODescr, List<String> MODescr, List<String> POCate, List<String> MOCate) {
         this.PODescr = PODescr;
